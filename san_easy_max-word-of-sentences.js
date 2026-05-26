@@ -12,7 +12,11 @@ const sentences = [
 ];
 
 function result(sentences) {
-   return sentences.reduce(function (max, sentence) { return Math.max(max, sentence.split(' ').length); }, 0);
+  if (!Array.isArray(sentences) || sentences.length === 0) return 0;
+  return sentences.reduce((max, s) => {
+    const count = s.trim().split(/\s+/).filter(Boolean).length;
+    return Math.max(max, count);
+  }, 0);
 }
 
 console.log(result(sentences));
